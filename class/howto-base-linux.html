@@ -1,0 +1,1774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Introduction to GNU-Linux</title>
+<!-- 2015-06-12 Fri 13:14 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Andrea Melloncelli" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./other/worg.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Introduction to GNU-Linux</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. The Linux terminal</a></li>
+<li><a href="#sec-3">3. A</a></li>
+<li><a href="#sec-4">4. The Linux terminal (continue)</a></li>
+<li><a href="#sec-5">5. B</a></li>
+<li><a href="#sec-6">6. Bash scripts ( basics )</a></li>
+<li><a href="#sec-7">7. C</a></li>
+<li><a href="#sec-8">8. Remote terminal</a></li>
+<li><a href="#sec-9">9. GNU-Linux filesystem and packet installation</a></li>
+<li><a href="#sec-10">10. THE END</a></li>
+<li><a href="#sec-11">11. References</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Brief introduction on GNU-Linux and open source</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>open-source concept and the licence GNU
+</li>
+<li>reliability
+</li>
+<li>community
+</li>
+<li>upsides
+</li>
+<li>downsides
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> What a distribution is.</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>the definition
+</li>
+<li>the package software
+</li>
+<li>some names
+</li>
+<li>the one we'll use
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> The power of Linux terminal</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>What a plain text is.
+</li>
+<li>All(input, output) is plain-text, this is not a limitation but a very all-purpose raw material to manipulate data.
+</li>
+<li>Hundreds of small tools: "Do one thing and do it well"
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> The Linux terminal</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> How does it work?</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>what a shell is
+</li>
+
+<li>A terminal is
+</li>
+
+<li>arrow keys and history
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Navigation</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>cd
+</li>
+
+<li>ls
+</li>
+
+<li>pwd : working directory
+</li>
+
+<li>.. : parent directory
+</li>
+
+<li>full path and relative path
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Read files</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><ol class="org-ol"><li>New commands<br  /><div class="outline-text-4" id="text-2-3-1">
+<ul class="org-ul">
+<li>ls (list files and directories)
+</li>
+
+<li>less (view text files)
+</li>
+
+<li>file (classify a file's contents)
+</li>
+</ul>
+</div>
+</li>
+
+<li>Example<br  /><div class="outline-text-4" id="text-2-3-2">
+<ul class="org-ul">
+<li>ls (list files and directories)
+
+<pre class="example">
+daco@blind:~/class$ ls
+aaa.txt  alphabet  a.txt  b.txt  c.txt  d.txt  e.txt  executable.sh  f.txt
+daco@blind:~/class$ ls -l
+total 100
+-rw-rw-r-- 1 daco daco   22 May 22 10:05 aaa.txt
+drwxrwxr-x 2 daco daco 4096 May 20 16:30 alphabet
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 a.txt
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 b.txt
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 c.txt
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 d.txt
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 e.txt
+-rwxrwxr-x 1 daco daco  102 May 22 10:12 executable.sh
+-rw-rw-r-- 1 daco daco   20 May 22 10:05 f.txt
+daco@blind:~/class$ cd class
+</pre>
+
+<p>
+drwxrwxrwx: User Group Others
+</p>
+</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>less (view text files)
+
+<pre class="example">
+less man_less.txt 
+</pre>
+</li>
+
+<li>file (classify a file's contents)
+
+<pre class="example">
+file man_less.txt
+</pre>
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> The linux filesystem</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+A short description of the linux filesystem
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Manipulating files</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>cp - copy files and directories
+</li>
+<li>mv - move or rename files and directories
+</li>
+<li>rm - remove files and directories
+</li>
+<li>mkdir - create directories
+</li>
+
+<li>wildcards and glob pattern <a href="http://en.wikipedia.org/wiki/Glob_(programming)">http://en.wikipedia.org/wiki/Glob_(programming)</a>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">Wildcard</th>
+<th scope="col" class="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">*</td>
+<td class="left">Matches any characters</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">?</td>
+<td class="left">Matches any single character</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">[characters]</td>
+<td class="left">Matches any character that is a member of the set characters. The set of characters may also be expressed as a</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">POSIX character class such as one of the following:</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">POSIX Character Classes [:alnum:]     Alphanumeric characters</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">[:alpha:]     Alphabetic characters</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">[:digit:]     Numerals</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">[:upper:]     Uppercase alphabetic characters</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">[:lower:]     Lowercase alphabetic characters</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">[!characters]</td>
+<td class="left">Matches any character that is not a member of the set characters</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p>
+Let's see some examples:
+</p>
+
+<pre class="example">
+daco@blind:~/class$ ls *.txt
+1.txt  3.txt  5.txt    a.txt  c.txt  e.txt  man_less.txt
+2.txt  4.txt  aaa.txt  b.txt  d.txt  f.txt
+
+daco@blind:~/class$ ls ?.txt
+1.txt  2.txt  3.txt  4.txt  5.txt  a.txt  b.txt  c.txt  d.txt  e.txt  f.txt
+
+daco@blind:~/class$ ls [[:alpha:]].txt
+a.txt  b.txt  c.txt  d.txt  e.txt  f.txt
+
+daco@blind:~/class$ ls [[:digit:]].txt
+1.txt  2.txt  3.txt  4.txt  5.txt
+
+daco@blind:~/class$ ls [abc].txt
+a.txt  b.txt  c.txt
+
+daco@blind:~/class$ ls [!abc].txt
+1.txt  2.txt  3.txt  4.txt  5.txt  d.txt  e.txt  f.txt
+
+daco@blind:~/class$ ls [ace].txt
+a.txt  c.txt  e.txt
+
+daco@blind:~/class$ ls [!ace].txt
+1.txt  2.txt  3.txt  4.txt  5.txt  b.txt  d.txt  f.txt
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Help and command type</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>type - Display information about command type
+</li>
+<li>which - Locate a command
+</li>
+<li>help - Display reference page for shell builtin
+</li>
+<li>man - Display an on-line command reference
+</li>
+</ul>
+
+<pre class="example">
+daco@blind:~/class$ type echo
+echo is a shell builtin
+
+daco@blind:~/class$ type type
+type is a shell builtin
+
+daco@blind:~/class$ type cp
+cp is hashed (/bin/cp)
+
+daco@blind:~/class$ type ls
+ls is aliased to `ls --color=auto'
+
+daco@blind:~/class$ which ls
+/bin/ls
+
+daco@blind:~/class$ ls /bin/ls -l
+-rwxr-xr-x 1 root root 108708 Jan 14 04:50 /bin/ls
+
+daco@blind:~/class$ help echo
+echo: echo [-neE] [arg ...]
+    Write arguments to the standard output.
+
+    Display the ARGs, separated by a single space character and followed by a
+    newline, on the standard output.
+
+    Options:
+      -n        do not append a newline
+      -e        enable interpretation of the following backslash escapes
+      -E        explicitly suppress interpretation of backslash escapes
+
+    `echo' interprets the following backslash-escaped characters:
+      \a        alert (bell)
+      \b        backspace
+      \c        suppress further output
+      \e        escape character
+      \E        escape character
+      \f        form feed
+      \n        new line
+      \r        carriage return
+      \t        horizontal tab
+      \v        vertical tab
+      \\        backslash
+      \0nnn     the character whose ASCII code is NNN (octal).  NNN can be
+        0 to 3 octal digits
+      \xHH      the eight-bit character whose value is HH (hexadecimal).  HH
+        can be one or two hex digits
+
+    Exit Status:
+    Returns success unless a write error occurs.
+
+daco@blind:~/class$ man ls
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Input and Output redirection</h3>
+<div class="outline-text-3" id="text-2-7">
+</div><ol class="org-ol"><li>List<br  /><div class="outline-text-4" id="text-2-7-1">
+<pre class="example">
+&gt;
+&gt;&gt;
+|
+&lt;
+</pre>
+</div>
+</li>
+
+<li>Standard Output<br  /><div class="outline-text-4" id="text-2-7-2">
+<pre class="example">
+daco@blind:~/class$ ls &gt; lsout.log
+daco@blind:~/class$ less lsout.log
+daco@blind:~/class$ cat lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ cat 1.txt &gt; lsout.log
+daco@blind:~/class$ cat lsout.log
+This is the 1 file.
+daco@blind:~/class$ cat 1.txt 
+This is the 1 file.
+daco@blind:~/class$ ls &gt;&gt; lsout.log
+daco@blind:~/class$ cat lsout.log 
+This is the 1 file.
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ cat 1.txt 
+This is the 1 file.
+daco@blind:~/class$ ls &gt; lsout.log
+daco@blind:~/class$ cat lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+</pre>
+</div>
+</li>
+
+<li>Standard Input<br  /><div class="outline-text-4" id="text-2-7-3">
+<pre class="example">
+daco@blind:~/class$ sort &lt; lsout.log
+daco@blind:~/class$ sort &lt; lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ ls -r &gt; lsout.log
+daco@blind:~/class$ cat lsout.log
+text_files
+sorted_lsout.log
+man_less.txt
+lsout.log
+f.txt
+executable.sh
+e.txt
+d.txt
+c.txt
+b.txt
+a.txt
+alphabet
+aaa.txt
+5.txt
+4.txt
+3.txt
+2.txt
+1.txt
+daco@blind:~/class$ sort &lt; lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ sort lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ sort 
+aaa
+aaa
+aaa
+aaa
+daco@blind:~/class$ sort &lt; lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+daco@blind:~/class$ cat &lt; lsout.log 
+text_files
+sorted_lsout.log
+man_less.txt
+lsout.log
+f.txt
+executable.sh
+e.txt
+d.txt
+c.txt
+b.txt
+a.txt
+alphabet
+aaa.txt
+5.txt
+4.txt
+3.txt
+2.txt
+1.txt
+daco@blind:~/class$ sort    &lt; lsout.log    &gt; sorted_lsout.log
+daco@blind:~/class$ cat sorted_lsout.log
+1.txt
+2.txt
+3.txt
+4.txt
+5.txt
+aaa.txt
+alphabet
+a.txt
+b.txt
+c.txt
+d.txt
+e.txt
+executable.sh
+f.txt
+lsout.log
+man_less.txt
+sorted_lsout.log
+text_files
+</pre>
+</div>
+</li>
+
+<li>Pipelines<br  /><div class="outline-text-4" id="text-2-7-4">
+<pre class="example">
+ls | less
+</pre>
+</div>
+</li>
+
+<li>Filters<br  /><ol class="org-ol"><li>regular-expression<br  /><div class="outline-text-5" id="text-2-7-5-1">
+<p>
+<a href="http://en.wikipedia.org/wiki/Regular_expression">http://en.wikipedia.org/wiki/Regular_expression</a>
+</p>
+</div>
+</li>
+
+<li>sed (Stream EDitor)<br  /><div class="outline-text-5" id="text-2-7-5-2">
+<p>
+<a id="sed" name="sed"></a>
+</p>
+</div>
+<ol class="org-ol"><li>references<br  /><div class="outline-text-6" id="text-2-7-5-2-1">
+<ul class="org-ul">
+<li><a href="http://sed.sourceforge.net">http://sed.sourceforge.net</a>
+
+<ul class="org-ul">
+<li><a href="http://sed.sourceforge.net/sed1line.txt">http://sed.sourceforge.net/sed1line.txt</a>
+</li>
+</ul>
+</li>
+
+<li><a href="http://en.wikibooks.org/wiki/Sed">http://en.wikibooks.org/wiki/Sed</a>
+</li>
+
+<li><a href="http://www.grymoire.com/Unix/Sed.html">http://www.grymoire.com/Unix/Sed.html</a>
+</li>
+</ul>
+</div>
+</li>
+
+<li>syntax<br  /><div class="outline-text-6" id="text-2-7-5-2-2">
+<pre class="example">
+sed [-n] 'from,to commands'
+sed -n '1,10 p'
+sed -n '/from/,/to/ commands'
+sed -n 's/abc/ABC/ p'
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #00bfff; font-weight: bold;">#</span><span style="color: #00bfff; font-weight: bold;">!/bin/</span><span style="color: #a020f0;">sh</span>
+<span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">This is a Bourne shell script that removes #-type comments</span>
+<span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">between 'begin' and 'end' words.</span>
+sed -n <span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">        /begin/,/end/ {</span>
+<span style="color: #8b2252;">             s/#.*//</span>
+<span style="color: #8b2252;">             s/[ ^I]*$//</span>
+<span style="color: #8b2252;">             /^$/ d</span>
+<span style="color: #8b2252;">             p</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">'</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #00bfff; font-weight: bold;">#</span><span style="color: #00bfff; font-weight: bold;">!/bin/</span><span style="color: #a020f0;">sh</span>
+<span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">This is a Bourne shell script that removes #-type comments</span>
+<span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">between 'begin' and 'end' words.</span>
+sed -n <span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">        1,100 {</span>
+<span style="color: #8b2252;">                /begin/,/end/ {</span>
+<span style="color: #8b2252;">                     s/#.*//</span>
+<span style="color: #8b2252;">                     s/[ ^I]*$//</span>
+<span style="color: #8b2252;">                     /^$/ d</span>
+<span style="color: #8b2252;">                     p</span>
+<span style="color: #8b2252;">                }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">'</span>
+</pre>
+</div>
+</div>
+</li></ol>
+</li>
+<li>awk<br  /><div class="outline-text-5" id="text-2-7-5-3">
+<p>
+<a id="awk" name="awk"></a>
+</p>
+
+<ul class="org-ul">
+<li><a href="http://en.wikibooks.org/wiki/An_Awk_Primer/Awk_Command-Line_Examples">http://en.wikibooks.org/wiki/An_Awk_Primer/Awk_Command-Line_Examples</a>
+</li>
+</ul>
+</div>
+</li></ol>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Expansions</h3>
+<div class="outline-text-3" id="text-2-8">
+</div><ol class="org-ol"><li>Pathname Expansion<br  /><div class="outline-text-4" id="text-2-8-1">
+<pre class="example">
+ls *.txt
+</pre>
+</div>
+</li>
+
+<li>Tilde Expansion<br  /><div class="outline-text-4" id="text-2-8-2">
+<pre class="example">
+ls ~
+ls ~username
+</pre>
+</div>
+</li>
+
+<li>Arithmetic Expansion<br  /><div class="outline-text-4" id="text-2-8-3">
+<pre class="example">
+echo $(( 2 + 3 ))
+</pre>
+</div>
+</li>
+
+<li>Brace Expansion<br  /><div class="outline-text-4" id="text-2-8-4">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #483d8b;">echo</span> {a,b,c}
+<span style="color: #483d8b;">echo</span> {a..b}
+<span style="color: #483d8b;">echo</span> {a{1..3},b{2..4}}
+</pre>
+</div>
+</div>
+</li>
+
+<li>Parameter expansion<br  /><div class="outline-text-4" id="text-2-8-5">
+<pre class="example">
+echo $HOME
+</pre>
+</div>
+</li>
+
+<li>Command Substitution<br  /><div class="outline-text-4" id="text-2-8-6">
+<pre class="example">
+ls -l $(which cp)
+</pre>
+</div>
+</li>
+<li>Quoting<br  /><div class="outline-text-4" id="text-2-8-7">
+<ul class="org-ul">
+<li>double quoting
+
+<pre class="example">
+echo "My home folder is : $HOME"
+</pre>
+</li>
+
+<li>single quoting
+
+<pre class="example">
+echo 'The variable containing my home folder is $HOME'
+</pre>
+</li>
+
+<li>escape characters
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Escape Character</th>
+<th scope="col" class="left">Name</th>
+<th scope="col" class="left">Possible Uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">\n</td>
+<td class="left">newline</td>
+<td class="left">Adding blank lines to text</td>
+</tr>
+
+<tr>
+<td class="left">\t</td>
+<td class="left">tab</td>
+<td class="left">Inserting horizontal tabs to text</td>
+</tr>
+
+<tr>
+<td class="left">\\</td>
+<td class="left">backslash</td>
+<td class="left">Inserts a backslash</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>More Backslash Tricks
+
+<ul class="org-ul">
+<li>new line
+</li>
+
+<li>compact and long command option
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Permissions</h3>
+<div class="outline-text-3" id="text-2-9">
+</div><ol class="org-ol"><li>New commands<br  /><div class="outline-text-4" id="text-2-9-1">
+<ul class="org-ul">
+<li>chmod - modify file access rights
+</li>
+<li>su - temporarily become the superuser
+</li>
+<li>sudo - temporarily become the superuser
+</li>
+<li>chown - change file ownership
+</li>
+<li>chgrp - change a file's group ownership
+</li>
+</ul>
+</div>
+</li>
+
+<li>file permissions<br  /></li>
+
+<li>folder permissions<br  /></li>
+
+<li>Super user<br  /></li>
+
+<li>Changing File Ownership<br  /></li></ol>
+</div>
+
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> Jobs</h3>
+<div class="outline-text-3" id="text-2-10">
+</div>
+
+<ol class="org-ol"><li>Commands<br  /><div class="outline-text-4" id="text-2-10-1">
+<ul class="org-ul">
+<li>ps - list the processes running on the system
+</li>
+<li>kill - send a signal to one or more processes (usually to "kill" a process)
+</li>
+<li>jobs - an alternate way of listing your own processes
+</li>
+<li>bg - put a process in the background
+</li>
+<li>fg - put a process in the foreground
+</li>
+</ul>
+</div>
+</li>
+
+<li>Signals<br  /><div class="outline-text-4" id="text-2-10-2">
+<p>
+The most used signals from
+</p>
+
+<pre class="example">
+kill -l
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Signal Number</th>
+<th scope="col" class="left">Name</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="left">SIGHUP</td>
+<td class="left">Hang up signal. Programs can listen for this signal and act upon it. This signal is sent to processes running in a terminal when you close the terminal.</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="left">SIGINT</td>
+<td class="left">Interrupt signal. This signal is given to processes to interrupt them. Programs can process this signal and act upon it. You can also issue this signal directly by typing Ctrl-c in the terminal window where the program is running.</td>
+</tr>
+
+<tr>
+<td class="right">15</td>
+<td class="left">SIGTERM</td>
+<td class="left">Termination signal. This signal is given to processes to terminate them. Again, programs can process this signal and act upon it. This is the default signal sent by the kill command if no signal is specified.</td>
+</tr>
+
+<tr>
+<td class="right">9</td>
+<td class="left">SIGKILL</td>
+<td class="left">Kill signal. This signal causes the immediate termination of the process by the Linux kernel. Programs cannot listen for this signal.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> A</h2>
+<div class="outline-text-2" id="text-3">
+<hr  />
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> The Linux terminal (continue)</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> cat, grep, sed, awk, tee : per line file manipulation</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>cat
+</li>
+<li>grep
+</li>
+<li>sed <a href="#sed">2.7.5.2</a>
+</li>
+<li>awk <a href="#awk">2.7.5.3</a>
+</li>
+<li>tee
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> cut and paste: columns file manipulation</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>cut
+</li>
+<li>paste
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> B</h2>
+<div class="outline-text-2" id="text-5">
+<hr  />
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Bash scripts ( basics )</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Create a script</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><ol class="org-ol"><li>Use a text editor<br  /><div class="outline-text-4" id="text-6-1-1">
+<ul class="org-ul">
+<li>gedit
+</li>
+<li>emacs
+</li>
+<li>vim
+</li>
+</ul>
+</div>
+</li>
+
+<li>Comments<br  /><div class="outline-text-4" id="text-6-1-2">
+<pre class="example">
+# some comments
+</pre>
+</div>
+</li>
+
+<li>Make a file executable<br  /><div class="outline-text-4" id="text-6-1-3">
+<pre class="example">
+chmod a+x ./file
+</pre>
+</div>
+</li>
+
+<li>PATH<br  /><div class="outline-text-4" id="text-6-1-4">
+<p>
+<a id="path" name="path"></a> <a id="PATH" name="PATH"></a>
+</p>
+<pre class="example">
+export PATH=$PATH:directory
+</pre>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Configuration file</h3>
+<div class="outline-text-3" id="text-6-2">
+<pre class="example">
+.bashrc
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Here scripts and variables</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">cat - &lt;&lt;EOF
+<span style="color: #ffa54f;">Hello world!</span>
+<span style="color: #ffa54f;">EOF</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Command Substitution And Constants</h3>
+<div class="outline-text-3" id="text-6-4">
+</div><ol class="org-ol"><li>Assigning A Command's Result To A Variable<br  /><div class="outline-text-4" id="text-6-4-1">
+<pre class="example">
+i=$(cat file.txt)
+</pre>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> Shell Functions</h3>
+</div>
+
+
+
+<div id="outline-container-sec-6-6" class="outline-3">
+<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Flow Control</h3>
+<div class="outline-text-3" id="text-6-6">
+</div><ol class="org-ol"><li>New commands<br  /><div class="outline-text-4" id="text-6-6-1">
+<ul class="org-ul">
+<li>if
+</li>
+<li>test
+</li>
+<li>exit
+</li>
+<li>read
+</li>
+<li>case
+</li>
+<li>for
+</li>
+<li>while
+</li>
+</ul>
+</div>
+</li>
+
+<li>if<br  /><div class="outline-text-4" id="text-6-6-2">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">First form</span>
+
+test expression
+
+<span style="color: #00bfff; font-weight: bold;"># </span><span style="color: #00bfff; font-weight: bold;">Second form</span>
+
+[ expression ]
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">if</span> [ -f .bash_profile ]; <span style="color: #a020f0;">then</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"Loading your .bash_profile"</span>
+<span style="color: #a020f0;">else</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"You have no .bash_profile!"</span>
+<span style="color: #a020f0;">fi</span>
+</pre>
+</div>
+</div>
+</li>
+
+
+
+<li>Exit status<br  /><div class="outline-text-4" id="text-6-6-3">
+<ul class="org-ul">
+<li>How to get it
+<pre class="example">
+echo $?
+</pre>
+</li>
+
+<li>success
+<pre class="example">
+0
+</pre>
+</li>
+
+<li>failure
+<pre class="example">
+1 
+2
+...
+255
+</pre>
+</li>
+</ul>
+</div>
+</li>
+
+<li>Read input from stdin<br  /><div class="outline-text-4" id="text-6-6-4">
+<pre class="example">
+read message
+</pre>
+</div>
+</li>
+
+<li>case<br  /><div class="outline-text-4" id="text-6-6-5">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">case</span> $<span style="color: #a0522d;">character</span><span style="color: #a020f0;"> in</span>
+    1 ) <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"You entered one."</span>
+        ;;
+    2 ) <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"You entered two."</span>
+        ;;
+    3 ) <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"You entered three."</span>
+        ;;
+    * ) <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"You did not enter a number between 1 and 3."</span>
+<span style="color: #a020f0;">esac</span>
+</pre>
+</div>
+</div>
+</li>
+
+<li>Positional parameter<br  /><div class="outline-text-4" id="text-6-6-6">
+<pre class="example">
+Positional Parameters
+
+$0, $1, $2, etc.
+
+    Positional parameters, passed from command line to script, passed
+    to a function, or set to a variable (see Example 4-5 and Example
+    15-16)
+
+$#
+
+    Number of command-line arguments [4] or positional parameters (see
+    Example 36-2)
+
+$*
+
+    All of the positional parameters, seen as a single word
+
+    Note	
+
+    "$*" must be quoted.
+$@
+
+    Same as $*, but each parameter is a quoted string, that is, the
+    parameters are passed on intact, without interpretation or
+    expansion. This means, among other things, that each parameter in
+    the argument list is seen as a separate word.
+
+    Note	
+
+    Of course, "$@" should be quoted.
+</pre>
+</div>
+</li>
+
+<li>for<br  /><div class="outline-text-4" id="text-6-6-7">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">for</span> i<span style="color: #a020f0;"> in</span> word1 word2 word3; <span style="color: #a020f0;">do</span>
+    <span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">i</span>
+<span style="color: #a020f0;">done</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">for</span> counter<span style="color: #a020f0;"> in</span> {1..10..2}
+<span style="color: #a020f0;">do</span>
+    <span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">counter</span>
+<span style="color: #a020f0;">done</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">for</span> i<span style="color: #a020f0;"> in</span> <span style="color: #8b2252;">"$@"</span>; <span style="color: #a020f0;">do</span>
+    <span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">i</span>
+<span style="color: #a020f0;">done</span>
+</pre>
+</div>
+</div>
+</li>
+
+<li>while<br  /><div class="outline-text-4" id="text-6-6-8">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a0522d;">number</span>=0
+<span style="color: #a020f0;">while</span> [ <span style="color: #8b2252;">"$number"</span> -lt 10 ]; <span style="color: #a020f0;">do</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"Number = $number"</span>
+    <span style="color: #a0522d;">number</span>=$((number + 1))
+<span style="color: #a020f0;">done</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a020f0;">while </span><span style="color: #483d8b;">read</span> LINE
+<span style="color: #a020f0;">do</span>
+  <span style="color: #483d8b;">echo</span> $<span style="color: #a0522d;">LINE</span>
+<span style="color: #a020f0;">done</span> &lt; <span style="color: #ff00ff;">`tail -f /var/log/messages`</span>
+</pre>
+</div>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> C</h2>
+<div class="outline-text-2" id="text-7">
+<hr  />
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Remote terminal</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> ssh client (the terminal)</h3>
+<div class="outline-text-3" id="text-8-1">
+<pre class="example">
+ssh username@hostname [command]
+</pre>
+
+<pre class="example">
+~ % ssh daco@blind
+The authenticity of host 'blind (192.168.1.220)' can't be established.
+ECDSA key fingerprint is 38:99:b5:c1:66:7d:4c:84:9f:4d:bf:50:6a:3e:96:ae.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'blind' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-52-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+
+ 28 packages can be updated.
+ 21 updates are security updates.
+
+ Last login: Fri May 22 18:49:33 2015 from pustufatruntu
+ daco@blind:~$
+</pre>
+
+<p>
+You will find the configuration files in 
+</p>
+
+<pre class="example">
+/etc/ssh/
+~/.ssh/
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> ssh server (config file and keys)</h3>
+<div class="outline-text-3" id="text-8-2">
+<pre class="example">
+/etc/ssh/sshd_config
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> ssh authentication</h3>
+<div class="outline-text-3" id="text-8-3">
+<ul class="org-ul">
+<li>password
+</li>
+<li>asymmetric keys
+</li>
+<li>asymmetric keys (with the private key-encrypted)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="section-number-3">8.4</span> ssh key authentication</h3>
+<div class="outline-text-3" id="text-8-4">
+</div><ol class="org-ol"><li>a-symmetric key<br  /></li>
+<li>key generation<br  /><div class="outline-text-4" id="text-8-4-2">
+<ul class="org-ul">
+<li>generate a key pair if needed
+
+<pre class="example">
+ssh-keygen
+</pre>
+</li>
+
+<li>authorize the key on the server
+
+<ul class="org-ul">
+<li>alternative 1
+<pre class="example">
+scp id_rsa.pub daco@192.168.0.10:~/.ssh/pustufatruntu.pub
+ssh remote-host
+cat ~/.ssh/pustufatruntu.pub &gt;&gt; ~/.ssh/authorized_keys
+rm ~/.ssh/pustufatruntu.pub
+</pre>
+</li>
+
+<li>alternative 2
+<pre class="example">
+cat ~/.ssh/id_rsa.pub| ssh daco@blind 'cat - &gt;&gt; ~/.ssh/authorized_keys'
+</pre>
+</li>
+
+<li>alternative 3
+<pre class="example">
+ssh-copy-id -i ~/.ssh/id_rsa.pub blind
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+
+<li>key management<br  /><div class="outline-text-4" id="text-8-4-3">
+<p>
+How to know the fingerprint of a key
+</p>
+
+<pre class="example">
+ssh-keygen -lf ~/.ssh/id_rsa.pub
+</pre>
+
+<p>
+or
+</p>
+
+<pre class="example">
+ssh-add -l
+</pre>
+</div>
+</li>
+
+
+<li>ssh-agent<br  /><div class="outline-text-4" id="text-8-4-4">
+<p>
+To launch it:
+</p>
+
+<pre class="example">
+eval $(ssh-agent) &gt; /dev/null
+</pre>
+
+<p>
+To terminate it:
+</p>
+
+<pre class="example">
+eval $(ssh-agent -k) &gt; /dev/null
+</pre>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5"><span class="section-number-3">8.5</span> screen, tmux and running processes without a user logged in.</h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">tmux
+tmux attach
+</pre>
+</div>
+
+<p>
+use &lt;leader&gt; C-d to detach a session
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-6" class="outline-3">
+<h3 id="sec-8-6"><span class="section-number-3">8.6</span> shared shell (tmux)</h3>
+<div class="outline-text-3" id="text-8-6">
+</div><ol class="org-ol"><li>Basics<br  /><div class="outline-text-4" id="text-8-6-1">
+<p>
+If we want to share a shell we need a common socket where the two process can communicate together. This socket need to be writable by both programs.
+</p>
+</div>
+</li>
+
+<li>Basic sharing<br  /><div class="outline-text-4" id="text-8-6-2">
+<p>
+<a href="http://www.howtoforge.com/sharing-terminal-sessions-with-tmux-and-screen">http://www.howtoforge.com/sharing-terminal-sessions-with-tmux-and-screen</a>
+</p>
+
+<ul class="org-ul">
+<li><b>userA</b> Create a new socket with a new session
+
+<pre class="example">
+tmux -S /home/share/my-shared-socket new -s my-shared-session
+</pre>
+</li>
+
+<li><b>userA</b> Give the group the rights to read-write it
+
+<pre class="example">
+chgrp users /home/share/my-shared-socket
+chmod g+rwx /home/share/my-shared-socket #if needed
+</pre>
+</li>
+
+<li><b>userB</b>
+
+<pre class="example">
+tmux -S /home/share/my-shared-socket attach -t my-shared-session
+</pre>
+
+<p>
+<b>NB</b> use the -r option if you want attach in read-only mode
+</p>
+</li>
+</ul>
+</div>
+</li>
+
+<li>Grouped sessions<br  /><div class="outline-text-4" id="text-8-6-3">
+<p>
+<b>userC</b> wants to connect to a session of <b>userA</b>, but he wants to work on any window in that session and possibly different from the one in which <b>userA</b> is working. <b>userC</b> needs to create a new session grouped with the one of <b>userA</b>. This means that they will work on the same set of windows but in 2 different sessions.
+</p>
+
+<ul class="org-ul">
+<li><b>userC</b>
+
+<pre class="example">
+tmux -S my-shared-socket new -t my-shared-session
+</pre>
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> GNU-Linux filesystem and packet installation</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+APT : Advanced-Packaging-Tool
+</p>
+</div>
+
+<div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> root sub-folders and where software is installed</h3>
+<div class="outline-text-3" id="text-9-1">
+<pre class="example">
+/etc/apt/
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Ubuntu version system</h3>
+</div>
+
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> A packet manager : apt</h3>
+</div>
+
+<div id="outline-container-sec-9-4" class="outline-3">
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> tools</h3>
+<div class="outline-text-3" id="text-9-4">
+<ul class="org-ul">
+<li>dpkg
+</li>
+<li>apt-get
+</li>
+<li>apt-cache
+</li>
+<li>aptitude (from command line, or ncurses interface)
+</li>
+<li>apt-file
+</li>
+<li>graphical interface to apt
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5"><span class="section-number-3">9.5</span> configuration files</h3>
+<div class="outline-text-3" id="text-9-5">
+<ul class="org-ul">
+<li>/etc/apt/sources.list
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> THE END</h2>
+</div>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> References</h2>
+<div class="outline-text-2" id="text-11">
+<ul class="org-ul">
+<li>Bash Beginner Guide: <a href="http://www.tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html">http://www.tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html</a>
+</li>
+
+<li>Bash Reference Manual: <a href="http://www.gnu.org/software/bash/manual/bash.html">http://www.gnu.org/software/bash/manual/bash.html</a>
+</li>
+
+<li>Advanced Bash-Scripting Guide: <a href="http://www.tldp.org/LDP/abs/html/index.html">http://www.tldp.org/LDP/abs/html/index.html</a>
+</li>
+
+<li>Reference card: <a href="http://www.tldp.org/LDP/abs/html/refcards.html">http://www.tldp.org/LDP/abs/html/refcards.html</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Andrea Melloncelli</p>
+<p class="date">Created: 2015-06-12 Fri 13:14</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.7c)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
