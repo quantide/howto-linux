@@ -1,0 +1,11 @@
+FILEZILLA (copy remote files)
+
+https://filezilla-project.org/download.php?show_all=1
+
+---------------------------
+
+PUTTY (windows: access remote shell)
+
+http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
+
